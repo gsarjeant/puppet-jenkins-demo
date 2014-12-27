@@ -1,0 +1,42 @@
+---
+roles:
+  puppet_master:
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 4096]
+        - [modifyvm, !ruby/sym id, '--ioapic', 'on']
+        - [modifyvm, !ruby/sym id, '--cpus', '4']
+    synced_folders:
+      - host_path:  'site'
+        guest_path: '/var/modules/site'
+    provisioners:
+      - type: pe_bootstrap
+        role: !ruby/sym master
+        autosign:
+          - master.jenkins.puppetlabs.demo
+          - slave1.jenkins.puppetlabs.demo
+          - slave2.jenkins.puppetlabs.demo
+    profiles:
+      - base
+
+  jenkins_master:
+    profiles:
+      - posix_agent
+      - base
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 1024]
+        - [modifyvm, !ruby/sym id, '--ioapic', 'on']
+        - [modifyvm, !ruby/sym id, '--cpus', '2']
+
+  jenkins_slave:
+    profiles:
+      - posix_agent
+      - base
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 512]
+        - [modifyvm, !ruby/sym id, '--ioapic', 'on']

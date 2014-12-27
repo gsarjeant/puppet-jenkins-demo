@@ -1,0 +1,5 @@
+---
+# Boxes from http://puppet-vagrant-boxes.puppetlabs.com/
+# Updated: 2013-08-08
+boxes:
+  'centos-65-x64-vbox436-nocm': 'https://s3.amazonaws.com/puppet-vagrant-boxes/centos-65-x64-virtualbox-nocm.box'
