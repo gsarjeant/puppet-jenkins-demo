@@ -1,8 +1,16 @@
 class profile::jenkins::master {
-  class { 'jenkins':
+  include ::profile::jenkins
+
+  class { '::jenkins':
     plugin_hash => {
-      swarm => {},
-      git   => {},
-    }
+      swarm                 => {},
+      git                   => {},
+      git-client            => {},
+      scm-api               => {},
+      build-pipeline-plugin => {},
+      parameterized-trigger => {},
+      jquery                => {},
+    },
   }
+
 }

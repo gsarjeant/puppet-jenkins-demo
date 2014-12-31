@@ -15,7 +15,7 @@ roles:
     provisioners:
       - type: shell
         inline: |-
-          curl -sk https://master.puppet.puppetlabs.demo:8140/packages/current/install.bash | /bin/bash 
+          curl -sk https://master.puppetlabs.demo:8140/packages/current/install.bash | /bin/bash 
 
   puppet_master:
     provider:
@@ -31,11 +31,9 @@ roles:
       - type: pe_bootstrap
         role: !ruby/sym master
         autosign:
-          - master.jenkins.puppetlabs.demo
-          - slave1.jenkins.puppetlabs.demo
-          - slave2.jenkins.puppetlabs.demo
-      - type: shell
-        path: provision/install_puppet_modules.sh
+          - jenkins.puppetlabs.demo
+          - slave1.puppetlabs.demo
+          - slave2.puppetlabs.demo
       - type: shell
         path: provision/bootstrap_puppet_master.sh
       - type: shell

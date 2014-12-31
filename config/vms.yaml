@@ -1,6 +1,6 @@
 ---
 vms:
-  - name: "master.puppet.puppetlabs.demo"
+  - name: "master.puppetlabs.demo"
     box:  "puppetlabs/centos-6.5-64-nocm"
     roles: 
       - "puppet_master"
