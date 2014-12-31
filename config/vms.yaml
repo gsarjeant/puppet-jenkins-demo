@@ -6,21 +6,21 @@ vms:
       - "puppet_master"
       - "base"
 
-  - name: "master.jenkins.puppetlabs.demo"
+  - name: "jenkins.puppetlabs.demo"
     box: "puppetlabs/centos-6.5-64-nocm"
     roles: 
       - "jenkins_master"
       - "posix_agent"
       - "base"
 
-  - name: "slave1.jenkins.puppetlabs.demo"
+  - name: "slave1.puppetlabs.demo"
     box: "puppetlabs/centos-6.5-64-nocm"
     roles: 
       - "jenkins_slave"
       - "posix_agent"
       - "base"
 
-  - name: "slave2.jenkins.puppetlabs.demo"
+  - name: "slave2.puppetlabs.demo"
     box: "puppetlabs/centos-7.0-64-nocm"
     roles: 
       - "jenkins_slave"

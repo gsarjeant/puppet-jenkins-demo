@@ -34,6 +34,13 @@ roles:
           - master.jenkins.puppetlabs.demo
           - slave1.jenkins.puppetlabs.demo
           - slave2.jenkins.puppetlabs.demo
+      - type: shell
+        path: provision/install_puppet_modules.sh
+      - type: shell
+        path: provision/bootstrap_puppet_master.sh
+      - type: shell
+        path: provision/set_server_role.sh
+        args: 'role::puppet::master'
 
   jenkins_master:
     provider:
@@ -42,6 +49,10 @@ roles:
         - [modifyvm, !ruby/sym id, '--memory', 1024]
         - [modifyvm, !ruby/sym id, '--ioapic', 'on']
         - [modifyvm, !ruby/sym id, '--cpus', '2']
+    provisioners:
+      - type: shell
+        path: provision/set_server_role.sh
+        args: 'role::jenkins::master'
 
   jenkins_slave:
     provider:
@@ -49,3 +60,7 @@ roles:
       customize:
         - [modifyvm, !ruby/sym id, '--memory', 512]
         - [modifyvm, !ruby/sym id, '--ioapic', 'on']
+    provisioners:
+      - type: shell
+        path: provision/set_server_role.sh
+        args: 'role::jenkins::slave'
