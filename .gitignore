@@ -2,3 +2,5 @@
 .pe_build
 *.swp
 *.~
+test_modules/*
+!test_modules/README.md

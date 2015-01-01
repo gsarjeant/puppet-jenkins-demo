@@ -21,7 +21,7 @@ vms:
       - "base"
 
   - name: "slave2.puppetlabs.demo"
-    box: "puppetlabs/centos-7.0-64-nocm"
+    box: "puppetlabs/centos-6.5-64-nocm"
     roles: 
       - "jenkins_slave"
       - "posix_agent"
