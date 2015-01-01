@@ -7,7 +7,7 @@ vms:
       - "base"
 
   - name: "jenkins.puppetlabs.demo"
-    box: "puppetlabs/centos-6.5-64-nocm"
+    box:  "puppetlabs/centos-6.5-64-nocm"
     roles: 
       - "jenkins_master"
       - "posix_agent"

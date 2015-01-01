@@ -14,6 +14,7 @@ MODULE_DIR="${ENVIRONMENT_DIR}/production/modules"
 
 # Install required modules for this environment
 $PUPPET_CMD module install rtyler/jenkins
+$PUPPET_CMD module install puppetlabs/git 
 
 # Link the role and profile modules into the modulepath
 if [ ! -L "${MODULE_DIR}/role" ]
