@@ -20,6 +20,7 @@ Contents
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
 * [Usage](#usage)
+* [Accessing the Jenkins Dashboard](#accessing-the-jenkins-dashboard)
 * [Caveats](#caveats)
 
 Quickstart
@@ -73,7 +74,6 @@ By default, the tests are configured to use the [basic\_module\_tests](https://g
     cd test_modules
     git clone git@github.com:gsarjeant/basic_module_tests.git
 
-
 Usage
 -----
 
@@ -89,7 +89,38 @@ This will create three VMs:
 * **jenkins.puppetlabs.demo**: The jenkins master. Jobs are defined here, but run on the slave.
 * **slave1.puppetlabs.demo**: The jenkins slave. Jobs run here.
 
+This environment uses the [vagrant-auto\_network](https://github.com/adrienthebo/vagrant-auto_network) plugin to assign IP addresses to VMs automatically, and the [vagrant-hosts](https://github.com/adrienthebo/vagrant-hosts) plugin to manage internal DNS (/etc/hosts) entries on the vagrant VMs. Both of these plugins are installed with oscar.
+
+If you are not running any other VMs that are managed by the agrant-auto\_network plugin and do not modify the configuration of this environment, then the VMs will be assigned the following IP addresses:
+
+* **master.puppetlabs.vm**: 10.20.1.2
+* **jenkins.puppetlabs.vm**: 10.20.1.3
+* **slave1.puppetlabs.vm**: 10.20.1.4
+
+You can confirm these IPs from the command line as follows:
+
+    $ vagrant hosts list
+    10.20.1.3 jenkins.puppetlabs.demo jenkins
+    10.20.1.2 master.puppetlabs.demo master
+    10.20.1.4 slave1.puppetlabs.demo slave1
+
+Once you have determined the IPs, you may want to enter them into your **host machine's**  /etc/hosts file for convenience.
+
+Accessing the Jenkins Dshboard 
+------------------------------
+
+The Jenkins master is configured to listen on port 8080. This environment does not configure a web server in front of Jenkins. So, assuming that you have correctly set its IP in /etc/hosts on your host system, you can access the Jenkins dashboard at the following URL:
+
+http://jenkins.puppetlabs.demo:8080
+
+
 Caveats
 -------
 
-In the interest of keeping the focus of this environment on jenkins job configuration and puppet module testing, I have done a few things that aren't exactly aligned with Puppet or jenkins best practices. While I think this is fine for creating a local environment to familiarize yourself with the concepts, it is not intended to be a reference implementation of jenkins or puppet. 
+In the interest of keeping the focus of this environment on jenkins job configuration and puppet module testing, I have done a few things that aren't exactly aligned with Puppet or jenkins best practices. While I think this is fine for creating a local environment to familiarize yourself with the concepts, it is not intended to be a reference implementation of jenkins or puppet. Particularly noteworthy are:
+
+* **No authentication on the jenkins master:** This should of course be locked down in production.
+* **Classification by fact:** The puppet master is configured to include the class defined by the $::server\_role fact on the agent. While this is a handy way to spin up an auto-configuring vagrant environment, it is also a handy way to allow anyone with administrative access to a production machine to change its classification without requiring access to the Puppet master.
+* **Parameterized profiles:** This environment makes use of the (Roles and Profiles)[http://garylarizza.com/blog/2014/02/17/puppet-workflow-part-2/] pattern for puppet modules. The profile::jenkins::master class includes a parameter that allows you to define the module that should be tested by the jenkins jobs. Without going into too much detail, this isn't best practice. It is generally preferable to use hiera to pass parameters directly to the underlying component modules, rather than passing parameter values to profiles. In the name of simplifying this demo, though, I just put the parameter on the profile.
+* **Templates in profiles:** Ditto above, but for templates. It's generally preferable for templates to be in component modules and for profiles to include those component modules. Putting them in the profile made this demo more straightforward, but I generally wouldn't do it in production.
+
