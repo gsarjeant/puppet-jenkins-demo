@@ -50,9 +50,9 @@ The module test jobs assume that a module repository exists in the test\_modules
 * clone a puppet module into the test\_modules directory
 * set the value of profile::jenkins::master::test\_module\_name to the name of your module (i.e. the name of the directory that contains your module code)
 
-By default, the tests are configured to use the basic\_module\_tests(https://github.com/gsarjeant/basic_module_tests) module. So, the simplest way to run the tests is to clone this module into the test\_ modules directory:
+By default, the tests are configured to use the [basic\_module\_tests](https://github.com/gsarjeant/basic_module_tests) module. So, the simplest way to run the tests is to clone this module into the test\_ modules directory:
 
-    cd test\_modules
+    cd test_modules
     git clone git@github.com:gsarjeant/basic_module_tests.git
 
 
@@ -67,9 +67,9 @@ Basic usage is as simple as invoking "vagrant up" from this project's root direc
 
 This will create three VMs:
 
-* *master.puppetlabs.demo*: The puppet master. Manages the jenkins master and slave
-* *jenkins.puppetlabs.demo*: The jenkins master. Jobs are defined here, but run on the slave.
-* *slave1.puppetlabs.demo*: The jenkins slave. Jobs run here.
+* _master.puppetlabs.demo_: The puppet master. Manages the jenkins master and slave
+* _jenkins.puppetlabs.demo_: The jenkins master. Jobs are defined here, but run on the slave.
+* _slave1.puppetlabs.demo_: The jenkins slave. Jobs run here.
 
 Caveats
 -------
