@@ -7,8 +7,6 @@ roles:
     provisioners:
       - type: shell
         inline: "echo 'nameserver 8.8.8.8' > /etc/resolv.conf"
-      - type: shell
-        path: provision/disable_firewall.sh
       - type: hosts
 
   posix_agent:
@@ -24,16 +22,12 @@ roles:
         - [modifyvm, !ruby/sym id, '--memory', 4096]
         - [modifyvm, !ruby/sym id, '--ioapic', 'on']
         - [modifyvm, !ruby/sym id, '--cpus', '4']
-    synced_folders:
-      - host_path:  'site'
-        guest_path: '/var/modules/site'
     provisioners:
       - type: pe_bootstrap
         role: !ruby/sym master
         autosign:
           - jenkins.puppetlabs.demo
           - slave1.puppetlabs.demo
-          - slave2.puppetlabs.demo
       - type: shell
         path: provision/bootstrap_puppet_master.sh
       - type: shell
@@ -50,7 +44,9 @@ roles:
     provisioners:
       - type: shell
         path: provision/set_server_role.sh
-        args: 'role::jenkins::master'
+        args:
+          - '-w' 
+          - 'role::jenkins::master'
 
   jenkins_slave:
     provider:
@@ -61,4 +57,6 @@ roles:
     provisioners:
       - type: shell
         path: provision/set_server_role.sh
-        args: 'role::jenkins::slave'
+        args:
+          - '-w' 
+          - 'role::jenkins::slave'

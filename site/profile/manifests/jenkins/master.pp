@@ -4,7 +4,8 @@ class profile::jenkins::master (
   include ::profile::jenkins
 
   class { '::jenkins':
-    plugin_hash => {
+    configure_firewall => true,
+    plugin_hash        => {
       swarm                 => {},
       greenballs           => {},
       git                   => {},

@@ -13,11 +13,18 @@ ENVIRONMENT_DIR='/etc/puppetlabs/puppet/environments'
 MODULE_DIR="${ENVIRONMENT_DIR}/production/modules"
 
 # Install required modules for this environment
+echo "Installing necessary puppet modules..."
+echo "  ==> rtyler/jenkins"
 $PUPPET_CMD module install rtyler/jenkins
+echo "  ==> puppetlabs/git"
 $PUPPET_CMD module install puppetlabs/git 
+echo "  ==> puppetlabs/pe_gem"
 $PUPPET_CMD module install puppetlabs/pe_gem
+echo "  ==> puppetlabs/firewall"
+$PUPPET_CMD module install puppetlabs/firewall
 
 # Link the role and profile modules into the modulepath
+echo "Linking role and profile directories into modulepath."
 if [ ! -L "${MODULE_DIR}/role" ]
 then
   ln -s '/vagrant/site/role' $MODULE_DIR
@@ -29,4 +36,5 @@ then
 fi
 
 # Trigger a puppet run to apply the master role
+echo "Applying puppet master role."
 /opt/puppet/bin/puppet apply -e 'include role::puppet::master'
