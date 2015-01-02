@@ -6,7 +6,7 @@ with four Jenkins jobs that demonstrate basic Puppet module tests.
 The Jenkins VMs are managed by a puppet master that is also defined in this
 environment.
 
-I had hoped that by creating a project on github that combines [puppet](http://http://puppetlabs.com/),
+I had hoped that by creating a project on github that combines [puppet](http://puppetlabs.com/),
 [jenkins](http://jenkins-ci.org/) and [vagrant](https://www.vagrantup.com/), I would unlock some sort
 of DevOps merit badge, but alas, it doesn't seem to work that way. I'll have to settle for trying to
 make this useful.
