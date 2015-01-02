@@ -67,11 +67,11 @@ Basic usage is as simple as invoking "vagrant up" from this project's root direc
 
 This will create three VMs:
 
-* _master.puppetlabs.demo_: The puppet master. Manages the jenkins master and slave
-* _jenkins.puppetlabs.demo_: The jenkins master. Jobs are defined here, but run on the slave.
-* _slave1.puppetlabs.demo_: The jenkins slave. Jobs run here.
+* **master.puppetlabs.demo**: The puppet master. Manages the jenkins master and slave
+* **jenkins.puppetlabs.demo**: The jenkins master. Jobs are defined here, but run on the slave.
+* **slave1.puppetlabs.demo**: The jenkins slave. Jobs run here.
 
 Caveats
 -------
 
-In the interest of keeping the focus of this environment on jenkins job configuration and puppet module testing, I have done a few things that aren't exactly aligned with Puppet or jenkins best practices. While I think this is fine for creating a local environment to familiarize yourself with the concepts, it is not at all intended to be a reference implementation of jenkins or puppet. 
+In the interest of keeping the focus of this environment on jenkins job configuration and puppet module testing, I have done a few things that aren't exactly aligned with Puppet or jenkins best practices. While I think this is fine for creating a local environment to familiarize yourself with the concepts, it is not intended to be a reference implementation of jenkins or puppet. 
