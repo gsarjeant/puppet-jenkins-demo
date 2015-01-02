@@ -1,7 +1,8 @@
 Vagrant Jenkins Demo Environment
 ================================
 
-This is a vagrant environment that defines a basic Jenkins master/slave setup.
+This is a vagrant environment that defines a basic Jenkins master/slave setup,
+with four Jenkins jobs that demonstrate basic Puppet module tests.
 The Jenkins VMs are managed by a puppet master that is also defined in this
 environment.
 
@@ -32,9 +33,9 @@ Quickstart
 Introduction
 ------------
 
-There is increasing interest in testing and continuous integration of Puppet modules in the Puppet community. By incorporating rspec and serverspec tests in a puppet module, one can enable a fairly comprehensive test suite in jenkins, to ensure that Puppet module code is of high quality before deploying it to a live environment. It can be difficult to get started, however, because the topics can be overwhelming to people who are new to testing and CI.
+There is increasing interest in testing and continuous integration of Puppet modules in the Puppet community. By incorporating rspec and serverspec tests in a puppet module, one can enable a fairly comprehensive test suite in Jenkins, to ensure that Puppet module code is of high quality before deploying it to a live environment. It can be difficult to get started, however, because the topics can be overwhelming to people who are new to testing and CI.
 
-This project defines a vagrant environment that creates a very simple Puppet module testing framework in jenkins. It can be used in conjunction with a Puppet module that defines rspec and serverspec tests to perform the tests, but it will create the jenkins environment without including a test module if all you'd like to do is investigate jenkins. It is intended to demostrate the following functionality:
+This project defines a vagrant environment that creates a very simple Puppet module testing framework in Jenkins. It can be used in conjunction with a Puppet module that defines rspec and serverspec tests to perform the tests, but it will create the Jenkins environment without including a test module if all you'd like to do is investigate jenkins. It is intended to demostrate the following functionality:
 
 * Basic management of jenkins with Puppet, including:
   * Jenkins master installation
