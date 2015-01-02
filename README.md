@@ -12,6 +12,23 @@ make this useful.
 
 This vagrant environment requires Adrien Thebo's [oscar](https://github.com/adrienthebo/oscar) vagrant plugin.
 
+Contents
+--------
+
+* [Quickstart](#quickstart)
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [Usage](#usage)
+* [Caveats](#caveats)
+
+Quickstart
+----------
+
+    git clone git@github.com:gsarjeant/puppet-jenkins-demo.git
+    cd puppet-jenkins-demo/test_modules
+    git clone git@github.com:gsarjeant/basic_module_tests.git
+    vagrant up
+
 Introduction
 ------------
 
