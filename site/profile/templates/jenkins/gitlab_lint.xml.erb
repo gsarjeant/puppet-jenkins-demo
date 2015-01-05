@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description/>
+  <description>Performs puppet lint tests on the <%=@test_module_name-%> module. Triggers in response to a gitlab webhook, using the gitlab-webhook plugin.</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.3.2">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>/vagrant/test_modules/<%=@test_module_name-%></url>
+        <url>http://gitlab.puppetlabs.demo/<%=@gitlab_username-%>/<%=@test_module_name-%>.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -16,30 +16,24 @@
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <browser class="hudson.plugins.git.browser.GitLab">
+      <url>http://gitlab.puppetlabs.demo/<%=@gitlab_username-%>/<%=@test_module_name-%></url>
+      <version>7.6</version>
+    </browser>
     <submoduleCfg class="list"/>
     <extensions/>
   </scm>
   <assignedNode>swarm</assignedNode>
-  <canRoam>false</canRoam>  
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <jenkins.triggers.ReverseBuildTrigger>
-      <spec/>
-      <upstreamProjects><%=@test_module_name-%>_lint, </upstreamProjects>
-      <threshold>
-        <name>SUCCESS</name>
-        <ordinal>0</ordinal>
-        <color>BLUE</color>
-        <completeBuild>true</completeBuild>
-      </threshold>
-    </jenkins.triggers.ReverseBuildTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
+  <customWorkspace><%=@test_module_name-%></customWorkspace>
   <builders>
     <hudson.tasks.Shell>
-      <command>/opt/puppet/bin/puppet parser validate manifests/init.pp</command>
+      <command>/opt/puppet/bin/puppet-lint manifests/init.pp</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>

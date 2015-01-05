@@ -7,7 +7,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>/vagrant/test_modules/<%=@test_module_name-%></url>
+        <url>http://gitlab.puppetlabs.demo/<%=@gitlab_username-%>/<%=@test_module_name-%>.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -16,18 +16,24 @@
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <browser class="hudson.plugins.git.browser.GitLab">
+      <url>http://gitlab.puppetlabs.demo/<%=@gitlab_username-%>/<%=@test_module_name-%></url>
+      <version>7.6</version>
+    </browser>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.IgnoreNotifyCommit/>
+    </extensions>
   </scm>
   <assignedNode>swarm</assignedNode>
-  <canRoam>false</canRoam>  
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec/>
-      <upstreamProjects><%=@test_module_name-%>_lint, </upstreamProjects>
+      <upstreamProjects>gitlab_<%=@test_module_name-%>_lint,</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

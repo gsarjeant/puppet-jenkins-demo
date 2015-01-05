@@ -1,5 +1,6 @@
 class profile::jenkins::master (
-  $test_module_name = 'basic_module_tests'
+  $test_module_name = 'basic_module_tests',
+  $gitlab_username  = 'demouser'
 ){
   include ::profile::jenkins
 
@@ -7,13 +8,15 @@ class profile::jenkins::master (
     configure_firewall => true,
     plugin_hash        => {
       swarm                 => {},
-      greenballs           => {},
+      greenballs            => {},
       git                   => {},
       git-client            => {},
       scm-api               => {},
       build-pipeline-plugin => {},
       parameterized-trigger => {},
       jquery                => {},
+      ruby-runtime          => {},
+      gitlab-hook           => {},
     },
   }
 
