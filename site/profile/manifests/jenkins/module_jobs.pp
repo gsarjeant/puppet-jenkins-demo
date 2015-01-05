@@ -23,7 +23,7 @@ define profile::jenkins::module_jobs {
     config => template("profile/jenkins/gitlab_lint.xml.erb"),
   }
 
-  jenkins::job { "$gitlab_{name}_parse":
+  jenkins::job { "gitlab_${name}_parse":
     config => template("profile/jenkins/gitlab_parse.xml.erb"),
   }
 
