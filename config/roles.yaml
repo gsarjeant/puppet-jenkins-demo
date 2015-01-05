@@ -74,5 +74,3 @@ roles:
         args:
           - '-w' 
           - 'role::gitlab'
-#      - type: shell
-#        path: "provision/install_gitlab.sh"
