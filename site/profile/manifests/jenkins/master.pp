@@ -7,13 +7,15 @@ class profile::jenkins::master (
     configure_firewall => true,
     plugin_hash        => {
       swarm                 => {},
-      greenballs           => {},
+      greenballs            => {},
       git                   => {},
       git-client            => {},
       scm-api               => {},
       build-pipeline-plugin => {},
       parameterized-trigger => {},
       jquery                => {},
+      ruby-runtime          => {},
+      gitlab-hook           => {},
     },
   }
 

@@ -6,6 +6,13 @@ vms:
       - "puppet_master"
       - "base"
 
+  - name: "gitlab.puppetlabs.demo"
+    box: "puppetlabs/centos-6.5-64-nocm"
+    roles: 
+      - "gitlab_server"
+      - "posix_agent"
+      - "base"
+
   - name: "jenkins.puppetlabs.demo"
     box:  "puppetlabs/centos-6.5-64-nocm"
     roles: 

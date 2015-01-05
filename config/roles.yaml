@@ -28,6 +28,7 @@ roles:
         autosign:
           - jenkins.puppetlabs.demo
           - slave1.puppetlabs.demo
+          - gitlab.puppetlabs.demo
       - type: shell
         path: provision/bootstrap_puppet_master.sh
       - type: shell
@@ -60,3 +61,18 @@ roles:
         args:
           - '-w' 
           - 'role::jenkins::slave'
+
+  gitlab_server:
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 512]
+        - [modifyvm, !ruby/sym id, '--ioapic', 'on']
+    provisioners:
+      - type: shell
+        path: provision/set_server_role.sh
+        args:
+          - '-w' 
+          - 'role::gitlab'
+#      - type: shell
+#        path: "provision/install_gitlab.sh"

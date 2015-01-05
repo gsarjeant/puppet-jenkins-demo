@@ -12,16 +12,21 @@ PUPPET_CMD='/opt/puppet/bin/puppet'
 ENVIRONMENT_DIR='/etc/puppetlabs/puppet/environments'
 MODULE_DIR="${ENVIRONMENT_DIR}/production/modules"
 
+# Define required modules for this environment
+MODULE_LIST=()
+MODULE_LIST+=('rtyler/jenkins')
+MODULE_LIST+=('puppetlabs/git')
+MODULE_LIST+=('puppetlabs/pe_gem')
+MODULE_LIST+=('puppetlabs/firewall')
+MODULE_LIST+=('spuder/gitlab')
+
 # Install required modules for this environment
 echo "Installing necessary puppet modules..."
-echo "  ==> rtyler/jenkins"
-$PUPPET_CMD module install rtyler/jenkins
-echo "  ==> puppetlabs/git"
-$PUPPET_CMD module install puppetlabs/git 
-echo "  ==> puppetlabs/pe_gem"
-$PUPPET_CMD module install puppetlabs/pe_gem
-echo "  ==> puppetlabs/firewall"
-$PUPPET_CMD module install puppetlabs/firewall
+for MODULE in "${MODULE_LIST[@]}"
+do
+  echo "  ==> ${MODULE}"
+  $PUPPET_CMD module install $MODULE
+done
 
 # Link the role and profile modules into the modulepath
 echo "Linking role and profile directories into modulepath."
