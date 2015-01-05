@@ -1,5 +1,6 @@
 class profile::jenkins::master (
-  $test_module_name = 'basic_module_tests'
+  $test_module_name = 'basic_module_tests',
+  $gitlab_username  = 'demouser'
 ){
   include ::profile::jenkins
 
