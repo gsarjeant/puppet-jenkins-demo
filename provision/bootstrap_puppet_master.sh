@@ -42,4 +42,4 @@ fi
 
 # Trigger a puppet run to apply the master role
 echo "Applying puppet master role."
-/opt/puppet/bin/puppet apply -e 'include role::puppet::master'
+/opt/puppet/bin/puppet apply -e 'include ::role::puppet::master'
